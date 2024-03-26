@@ -4,7 +4,9 @@ import {createRoot} from 'react-dom/client';
 import {RouterProvider} from "react-router-dom";
 import {persistor, store} from "./API/store/store";
 import {router} from "./API/Router";
-import { PersistGate } from 'redux-persist/integration/react';
+import {PersistGate} from 'redux-persist/integration/react';
+import {CssBaseline, ThemeProvider} from "@mui/material";
+import {theme} from "src/Utils/theme/theme";
 
 const reactRoot = createRoot(
     document.getElementById('root')!,
@@ -13,7 +15,10 @@ const reactRoot = createRoot(
 reactRoot.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-            <RouterProvider router={router}/>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <RouterProvider router={router}/>
+            </ThemeProvider>
         </PersistGate>
     </Provider>
 );

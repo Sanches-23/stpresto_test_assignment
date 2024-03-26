@@ -41,3 +41,59 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import {makeStyles} from "@mui/styles";
+// import {useAppSelector} from "src/API/store/hook";
+// import {calcTotalProducts} from "src/Utils/scripts/calcTotalProducts";
+// import {AppBar, Button, Toolbar} from "@mui/material";
+// import {CartSelector} from "src/API/store/slices/cart/cart.slice";
+// import {theme} from "src/Utils/theme/theme";
+//
+// const useNavbarStyles = makeStyles({
+//     appBar: {
+//         // backgroundColor: theme.palette.primary.main,
+//         backgroundColor: "black !important",
+//     },
+//     button: {
+//         color: "white",
+//         "&:hover": {
+//             textDecoration: "underline !important",
+//         },
+//     },
+//     link: {
+//         textDecoration: "none",
+//         color: "white",
+//     },
+// });
+//
+// const Navbar = () => {
+//     const classes = useNavbarStyles();
+//     const cart = useAppSelector(CartSelector);
+//
+//     const links = [
+//         { to: "/products", label: "Products" },
+//         { to: "/cart", label: `Cart (${calcTotalProducts(cart.items)})` },
+//         { to: "/order", label: "Order" },
+//     ];
+//
+//     return (
+//         <AppBar position="static" className={classes.appBar}>
+//             <Toolbar>
+//                 {links.map((link, index) => (
+//                     <Button key={index} className={classes.button}>
+//                         <Link to={link.to} className={classes.link}>
+//                             {link.label}
+//                         </Link>
+//                     </Button>
+//                 ))}
+//             </Toolbar>
+//         </AppBar>
+//     );
+// };
+//
+// export default Navbar;
+
+
