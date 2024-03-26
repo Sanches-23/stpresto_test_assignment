@@ -5,7 +5,7 @@ import {ProductSelector} from "src/API/store/slices/product/product.slice";
 import {addProductToCart} from "src/Utils/scripts/cartAction";
 import SnackbarCart from "src/StructureComponents/SnackbarCart";
 import {handleSnackbarClose} from "src/Utils/scripts/handleSnackbarClose";
-import {Button, Typography} from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import {useProductPageStyles} from "src/Pages/ProductPage/ProductPage.styles";
 
 const ProductPage: React.FC = () => {
@@ -27,49 +27,28 @@ const ProductPage: React.FC = () => {
     }
 
     return (
-
-        <div className={classes.root}>
-            <img src={product.image} alt={product.title} className={classes.image} />
-            <Typography variant="h6" className={classes.title}>{product.title}</Typography>
-            <Typography variant="body1" className={classes.category}>Category: {product.category}</Typography>
-
-            <p>Stars: {product.rating.rate}; Count: {product.rating.count}</p>
-
-            <Typography variant="body1" className={classes.description}>Description: {product.description}</Typography>
-            <Typography variant="body1" className={classes.price}>Price: ${product.price}</Typography>
-            <Button
-                variant="contained"
-                color="primary"
-                className={classes.addToCartButton}
-                onClick={() => {
+        <Grid container spacing={2} className={classes.root}>
+            <Grid item xs={12} sm={6} md={4}>
+                <div className={classes.imageContainer}>
+                    <img src={product.image} alt={product.title} className={classes.image}/>
+                </div>
+            </Grid>
+            <Grid item xs={12} sm={6} md={8}>
+                <Typography variant="h6" className={classes.title}>{product.title}</Typography>
+                <Typography variant="body1" className={classes.category}>Category: {product.category}</Typography>
+                <Typography variant="body1">Stars: {product.rating.rate}; Count: {product.rating.count}</Typography>
+                <Typography variant="body1"
+                            className={classes.description}>Description: {product.description}</Typography>
+                <Typography variant="body1" className={classes.price}>Price: ${product.price}</Typography>
+                <Button variant="contained" color="primary" className={classes.addToCartButton} onClick={() => {
                     addProductToCart(dispatch, product, setIsSnackbarOpen, setClickCount)
-                }}
-            >
-                Add to Cart
-            </Button>
-            <SnackbarCart
-                isOpen={isSnackbarOpen}
-                clickCount={clickCount}
-                message={"Product added to cart"}
-                onClose={handleSnackbarClose(setIsSnackbarOpen, setClickCount)}
-            />
-        </div>
-
-        // <div>
-        //     <img src={product.image} alt={product.title} style={{width: "30px", height: "30px"}}/>
-        //     <Typography variant="h6">{product.title}</Typography>
-        //     <Typography variant="body1">Category: {product.category}</Typography>
-        //
-        //     <p>Stars: {product.rating.rate}; Count: {product.rating.count}</p>
-        //
-        //     <Typography variant="body1">Description: {product.description}</Typography>
-        //     <Typography variant="body1">Price: ${product.price}</Typography>
-        //     <Button variant="contained" color="primary" onClick={() => {
-        //         addProductToCart(dispatch, product, setIsSnackbarOpen, setClickCount)
-        //     }}>Add to Cart</Button>
-        //     <SnackbarCart isOpen={isSnackbarOpen} clickCount={clickCount} message={"Product added to cart"}
-        //                   onClose={handleSnackbarClose(setIsSnackbarOpen, setClickCount)}/>
-        // </div>
+                }}>
+                    Add to Cart
+                </Button>
+                <SnackbarCart isOpen={isSnackbarOpen} clickCount={clickCount} message={"Product added to cart"}
+                              onClose={handleSnackbarClose(setIsSnackbarOpen, setClickCount)}/>
+            </Grid>
+        </Grid>
     );
 };
 

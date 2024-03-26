@@ -3,14 +3,23 @@ import {theme} from "src/Utils/theme/theme";
 
 const useProductPageStyles = makeStyles({
     root: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         padding: theme.spacing(2),
     },
+    imageContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+    },
     image: {
-        width: "30px",
-        height: "30px",
+        maxWidth: "100%",
+        maxHeight: "550px",
+        borderRadius: theme.shape.borderRadius,
+        boxShadow: theme.shadows[2],
+        transition: "transform 0.3s ease-in-out",
+        "&:hover": {
+            transform: "scale(1.01)",
+        },
     },
     title: {
         marginTop: theme.spacing(2),
@@ -28,5 +37,4 @@ const useProductPageStyles = makeStyles({
         marginTop: theme.spacing(2),
     },
 });
-
 export { useProductPageStyles };
