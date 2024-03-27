@@ -59,6 +59,7 @@ export const ProductItems: React.FC<ProductCardProps> = ({product, onAddToCartCl
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card className={classes.card}>
+                <Link to={`/products/${product.id}`}></Link>
                 <CardMedia
                     className={classes.cardMedia}
                     image={product.image}

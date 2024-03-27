@@ -11,14 +11,16 @@ import {DropdownOption} from "src/Shared/Dropdown";
 import {addProductToCart} from "src/Utils/scripts/cartAction";
 import SnackbarCart from "src/StructureComponents/SnackbarCart";
 import {handleSnackbarClose} from "src/Utils/scripts/handleSnackbarClose";
-import {Box, Grid, SelectChangeEvent} from "@mui/material";
+import {Box, Grid, useMediaQuery} from "@mui/material";
 import SortMenu from "src/Components/SortMenu";
 import {useCatalogPageStyles} from "src/Pages/CatalogPage/CatalogPage.style";
+import {theme} from "src/Utils/theme/theme";
 
 const CatalogPage: React.FC = () => {
     const {products, statuses} = useAppSelector(ProductSelector);
     const {categories} = useAppSelector(CategorySelector);
     const classes = useCatalogPageStyles();
+    const isSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
     const dispatch = useAppDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -102,14 +104,14 @@ const CatalogPage: React.FC = () => {
         setSearchParams(searchParams)
 
     };
-    const handleChangeSortBy = (event: SelectChangeEvent) => {
+    const handleChangeSortBy = (event: React.ChangeEvent<{ name?: string; value: string }>) => {
         setSortBy(event.target.value);
 
         searchParams.set("sortBy", event.target.value)
         setSearchParams(searchParams)
     };
 
-    const handleChangeCategory = (event: SelectChangeEvent) => {
+    const handleChangeCategory = (event: React.ChangeEvent<{ name?: string; value: string }>) => {
         setCategory(event.target.value);
 
         searchParams.set("category", event.target.value)
@@ -117,7 +119,7 @@ const CatalogPage: React.FC = () => {
     };
 
     return (
-        <Box className={classes.root}>
+        <Box className={isSmScreen ? classes.column : classes.root} >
             <Box className={classes.sortMenu}>
                 <SortMenu
                     searchQuery={searchQuery}

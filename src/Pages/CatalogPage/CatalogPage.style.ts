@@ -23,6 +23,11 @@ const useCatalogPageStyles = makeStyles({
         justifyContent: "center",
         marginTop: theme.spacing(2),
     },
+    column: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+    }
 });
 
 export {useCatalogPageStyles};

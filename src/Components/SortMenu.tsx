@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Paper, SelectChangeEvent} from "@mui/material";
+import {Box, Paper} from "@mui/material";
 import {Dropdown, DropdownOption} from "src/Shared/Dropdown";
 import {Input} from "src/Shared/Input";
 import {theme} from "src/Utils/theme/theme";
@@ -20,8 +20,8 @@ const useSortMenuStyles = makeStyles({
     paper: {
         padding: theme.spacing(2),
         marginBottom: theme.spacing(2),
+        width: 350
     },
-
 });
 
 type SortMenuProps = {
@@ -30,8 +30,8 @@ type SortMenuProps = {
     sortBy: string;
     categoryOptions: DropdownOption[];
     onChangeSearchQuery: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onChangeCategory: (event: SelectChangeEvent) => void;
-    onChangeSortBy: (event: SelectChangeEvent) => void;
+    onChangeCategory: (event: React.ChangeEvent<{ name?: string; value: string }>) => void;
+    onChangeSortBy: (event: React.ChangeEvent<{ name?: string; value: string }>) => void;
 }
 
 const SortMenu
