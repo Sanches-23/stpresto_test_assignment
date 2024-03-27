@@ -5,7 +5,7 @@ import {Product} from "src/API/types/Product";
 
 
 export const CartSlice = createSlice({
-    name: 'cart',
+    name: "cart",
     initialState: InitialCartState,
     reducers: {
         addToCart: (state, action: PayloadAction<Product>) => {

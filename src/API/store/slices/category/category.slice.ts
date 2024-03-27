@@ -9,15 +9,12 @@ export const CategorySlice = createSlice({
     initialState: InitialCategoryState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getCategories.pending, (state) => {
-            // state.statuses.getStatus = "Loading";
+        builder.addCase(getCategories.pending, () => {
         });
-        builder.addCase(getCategories.rejected, (state) => {
-            // state.statuses.getStatus = "Failed";
+        builder.addCase(getCategories.rejected, () => {
         });
         builder.addCase(getCategories.fulfilled, (state, action: PayloadAction<string[]>) => {
             state.categories = action.payload;
-            // state.statuses.getStatus = "Idle";
         });
     },
 });
