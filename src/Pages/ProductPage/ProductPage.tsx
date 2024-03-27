@@ -7,6 +7,7 @@ import SnackbarCart from "src/StructureComponents/SnackbarCart";
 import {handleSnackbarClose} from "src/Utils/scripts/handleSnackbarClose";
 import {Button, Grid, Typography} from "@mui/material";
 import {useProductPageStyles} from "src/Pages/ProductPage/ProductPage.styles";
+import StarRating from "src/StructureComponents/StarRating";
 
 const ProductPage: React.FC = () => {
     const {productId} = useParams<{ productId: string }>();
@@ -36,7 +37,8 @@ const ProductPage: React.FC = () => {
             <Grid item xs={12} sm={6} md={8}>
                 <Typography variant="h6" className={classes.title}>{product.title}</Typography>
                 <Typography variant="body1" className={classes.category}>Category: {product.category}</Typography>
-                <Typography variant="body1">Stars: {product.rating.rate}; Count: {product.rating.count}</Typography>
+                <StarRating rating={product.rating.rate} reviewCount={product.rating.count}/>
+                {/*<Typography variant="body1">Stars: {product.rating.rate}; Reviews: {product.rating.count}</Typography>*/}
                 <Typography variant="body1"
                             className={classes.description}>Description: {product.description}</Typography>
                 <Typography variant="body1" className={classes.price}>Price: ${product.price}</Typography>

@@ -26,4 +26,3 @@ const SnackbarCart: React.FC<SnackbarCartProps> = ({ isOpen, clickCount = "", me
 };
 
 export default SnackbarCart;
-//

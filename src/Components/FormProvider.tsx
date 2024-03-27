@@ -1,7 +1,19 @@
 import React from "react";
 import {useForm} from "react-hook-form";
-import {Button, TextField} from "@mui/material";
+import {Button, Grid, TextField} from "@mui/material";
 import {FormData} from "src/API/types/FormData";
+import {makeStyles} from "@mui/styles";
+import {theme} from "src/Utils/theme/theme";
+
+const useFormProviderStyles = makeStyles({
+    form: {
+        marginTop: theme.spacing(0),
+        marginBottom: theme.spacing(2),
+    },
+    buttonContainer: {
+        marginTop: theme.spacing(-1) + "!important",
+    },
+});
 
 type FormComponentProps = {
     onSubmit: (data: FormData) => void;
@@ -10,6 +22,7 @@ type FormComponentProps = {
 
 const FormProvider: React.FC<FormComponentProps> = ({onSubmit, cartItemsCount}) => {
     const {register, handleSubmit, reset, formState: {errors, isValid}, trigger} = useForm<FormData>();
+    const classes = useFormProviderStyles();
 
     const onFormSubmit = (data: FormData) => {
         onSubmit(data);
@@ -17,7 +30,7 @@ const FormProvider: React.FC<FormComponentProps> = ({onSubmit, cartItemsCount}) 
     };
 
     return (
-        <form onSubmit={handleSubmit(onFormSubmit)}>
+        <form onSubmit={handleSubmit(onFormSubmit)} className={classes.form}>
             <TextField
                 placeholder="Name"
                 {...register("name", {
@@ -30,12 +43,12 @@ const FormProvider: React.FC<FormComponentProps> = ({onSubmit, cartItemsCount}) 
                         value: 23,
                         message: "Name must not exceed 23 characters*",
                     },
-                    onChange: () => trigger("name")
+                    onChange: () => trigger("name"),
                 })}
                 error={!!errors.name}
                 helperText={errors.name?.message}
                 fullWidth
-                margin="normal"
+                margin="dense"
             />
             <TextField
                 placeholder="Email"
@@ -53,12 +66,13 @@ const FormProvider: React.FC<FormComponentProps> = ({onSubmit, cartItemsCount}) 
                         value: /^[a-zA-Z0-9._]{3,}@[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}$/,
                         message: "Email Address must look like this: ааа@аа.аа *",
                     },
-                    onChange: () => trigger("email")
+                    onChange: () => trigger("email"),
                 })}
                 error={!!errors.email}
                 helperText={errors.email?.message}
                 fullWidth
-                margin="normal"
+                // margin="normal"
+                margin="dense"
             />
             <TextField
                 placeholder="Phone"
@@ -66,23 +80,34 @@ const FormProvider: React.FC<FormComponentProps> = ({onSubmit, cartItemsCount}) 
                     required: "Phone number is required*",
                     pattern: {
                         value: /^\+380\d{9}$/,
-                        message: "Please ensure the phone number is in Ukrainian format  *"
+                        message: "Please ensure the phone number is in Ukrainian format  *",
                     },
-                    onChange: () => trigger("phone")
+                    onChange: () => trigger("phone"),
                 })}
                 error={!!errors.phone}
                 helperText={errors.phone?.message}
                 fullWidth
-                margin="normal"
+                // margin="normal"
+                margin="dense"
             />
 
-            <Button type="submit" variant="contained" color="primary" style={{marginTop: 16}}
-                    disabled={!isValid || cartItemsCount === 0}>
-                Place Order
-            </Button>
-            <Button type="button" onClick={() => reset()} style={{marginTop: 16, marginLeft: 8}}>
-                Clear
-            </Button>
+            <Grid container spacing={2} className={classes.buttonContainer}>
+                <Grid item>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={!isValid || cartItemsCount === 0}
+                    >
+                        Place Order
+                    </Button>
+                </Grid>
+                <Grid item>
+                    <Button type="button" onClick={() => reset()}>
+                        Clear
+                    </Button>
+                </Grid>
+            </Grid>
         </form>
     );
 };

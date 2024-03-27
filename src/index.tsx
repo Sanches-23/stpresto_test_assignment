@@ -9,7 +9,7 @@ import {CssBaseline, ThemeProvider} from "@mui/material";
 import {theme} from "src/Utils/theme/theme";
 
 const reactRoot = createRoot(
-    document.getElementById('root')!,
+    document.getElementById("root")!,
 )
 
 reactRoot.render(

@@ -1,5 +1,5 @@
 import React from "react";
-import {Select, MenuItem, SelectChangeEvent} from "@mui/material";
+import {Select, MenuItem, SelectChangeEvent, InputLabel, FormControl} from "@mui/material";
 
 export type DropdownOption = {
     value: string;
@@ -7,55 +7,31 @@ export type DropdownOption = {
 }
 
 type DropdownProps = {
+    label?: string;
     options: DropdownOption[];
     value: string;
     onChange: (event: SelectChangeEvent) => void;
+    className?: string;
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({options, value, onChange}) => {
-    const safeValue = options.some((option) => option.value === value) ? value : '';
+export const Dropdown: React.FC<DropdownProps> = ({label = "", options, value, onChange, className = ""}) => {
+    const safeValue = options.some((option) => option.value === value) ? value : "";
 
     return (
-        <Select
-            value={safeValue}
-            // value={value}
-            onChange={onChange}
-            variant="outlined"
-            displayEmpty
-            fullWidth
-        >
-            {options.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                    {option.label[0].toUpperCase() + option.label.slice(1)}
-                </MenuItem>
-            ))}
-        </Select>
+        <FormControl variant="outlined"
+                     fullWidth
+                     className={className}>
+            <InputLabel>{label}</InputLabel>
+            <Select
+                value={safeValue}
+                onChange={onChange}
+            >
+                {options.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
     );
 };
-
-
-// import React from "react";
-//
-// export type DropdownOption = {
-//     value: string;
-//     label: string;
-// }
-//
-// type DropdownProps = {
-//     options: DropdownOption[];
-//     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-// }
-//
-// export const Dropdown: React.FC<DropdownProps> = ({ options, onChange }) => {
-//     return (
-//         <select onChange={onChange}>
-//             {options.map((option, index) => (
-//                 <option key={index} value={option.value}>
-//                     {option.label}
-//                 </option>
-//             ))}
-//         </select>
-//     );
-// };
-//
-// export default Dropdown;
