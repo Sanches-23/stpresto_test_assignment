@@ -4,7 +4,7 @@ import {addToCart, CartSelector, removeAllFromCart, removeFromCart} from "src/AP
 import {Link} from "react-router-dom";
 import {calcTotalPrice} from "src/Utils/scripts/calcTotalPrice";
 import CartItems from "src/StructureComponents/CartItems";
-import {Button, Typography} from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import {useCartPageStyles} from "src/Pages/CartPage/CartPage.style";
 
 
@@ -14,34 +14,36 @@ export const CartPage: React.FC = () => {
     const classes = useCartPageStyles();
 
     return (
-        <div className={classes.root}>
+        <Box className={classes.root}>
             <Typography variant="h4" component="h1" className={classes.title}>
                 Cart Page
             </Typography>
             {cart.items.length === 0 ? (
                 <Typography variant="body1">Your cart is empty.</Typography>
             ) : (
-                <>
-                    {cart.items.map((item) => (
-                        <CartItems
-                            key={item.product.id}
-                            item={item}
-                            onAddToCartClick={() => dispatch(addToCart(item.product))}
-                            onRemoveFromCartClick={() => dispatch(removeFromCart(item.product))}
-                            onRemoveAllFromCartClick={() => dispatch(removeAllFromCart(item.product))}
-                        />
-                    ))}
-                    <Typography variant="h6" className={classes.totalPrice}>
-                        Total: ${calcTotalPrice(cart.items)}
-                    </Typography>
-                    <Link to="/order">
-                        <Button variant="contained" color="primary" className={classes.checkoutButton}>
-                            Proceed to Checkout
-                        </Button>
-                    </Link>
-                </>
+                <Box className={classes.cartGridContainer}>
+                    <Grid container spacing={3}>
+                        {cart.items.map((item) => (
+                            <CartItems
+                                key={item.product.id}
+                                item={item}
+                                onAddToCartClick={() => dispatch(addToCart(item.product))}
+                                onRemoveFromCartClick={() => dispatch(removeFromCart(item.product))}
+                                onRemoveAllFromCartClick={() => dispatch(removeAllFromCart(item.product))}
+                            />
+                        ))}
+                    </Grid>
+                </Box>
             )}
-        </div>
+            <Typography variant="h6" className={classes.totalPrice}>
+                Total: ${calcTotalPrice(cart.items)}
+            </Typography>
+            <Link to="/order">
+                <Button variant="contained" color="primary">
+                    Proceed to Checkout
+                </Button>
+            </Link>
+        </Box>
     );
 };
 

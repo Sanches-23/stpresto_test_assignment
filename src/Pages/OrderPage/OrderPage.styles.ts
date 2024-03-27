@@ -9,7 +9,11 @@ const useOrderPageStyles = makeStyles({
     title: {
         marginBottom: theme.spacing(2),
     },
-    cardGrid: {
+    orderGridContainer: {
+        width: "100%",
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: theme.spacing(0, 2),
         marginTop: theme.spacing(2),
     },
     card: {
@@ -24,7 +28,7 @@ const useOrderPageStyles = makeStyles({
         padding: theme.spacing(2),
     },
     totalPrice: {
-        fontWeight: "bold",
+        fontWeight: "bold" + "!important",
         marginTop: theme.spacing(2),
     },
     deleteIcon: {
