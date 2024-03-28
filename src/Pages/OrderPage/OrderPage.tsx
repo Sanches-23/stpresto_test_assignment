@@ -9,7 +9,7 @@ import SnackbarCart from "src/StructureComponents/SnackbarCart";
 import {handleSnackbarClose} from "src/Utils/scripts/handleSnackbarClose";
 import {Box, Card, CardActions, CardContent, Grid, IconButton, Typography} from "@mui/material";
 import FormProvider from "src/Components/FormProvider";
-import DeleteIcon from "src/Utils/icons/delete-svgrepo-com.svg"
+import DeleteIcon from "src/Utils/icons/DeleteIcon"
 import {useOrderPageStyles} from "src/Pages/OrderPage/OrderPage.styles";
 
 
@@ -48,7 +48,7 @@ const OrderPage: React.FC = () => {
                                 <IconButton edge="end" aria-label="delete"
                                             onClick={() => dispatch(removeAllFromCart(item.product))}
                                             sx={{marginLeft: "auto"}}>
-                                    <img src={DeleteIcon} alt="Delete icon" className={classes.deleteIcon}/>
+                                    <DeleteIcon className={classes.deleteIcon} />
                                 </IconButton>
                             </CardActions>
                         </Card>

@@ -7,6 +7,7 @@ import NotFoundPage from "src/Pages/NotFound/NotFoundPage";
 import React from "react";
 import ProductPage from "src/Pages/ProductPage/ProductPage";
 
+const basename = "/stpresto_test_assignment/";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -46,4 +47,6 @@ export const router = createBrowserRouter([
         path: "*",
         element: <NotFoundPage/>,
     },
-]);
+], {
+    basename: basename,
+});
