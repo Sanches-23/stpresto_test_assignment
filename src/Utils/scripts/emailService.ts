@@ -1,4 +1,4 @@
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import {Order} from "src/API/types/Order";
 
 export const sendOrderEmail = (order: Order) => {
